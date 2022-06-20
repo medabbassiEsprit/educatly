@@ -38,4 +38,11 @@ public class ServiceCourse implements IService<Course> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    public int getCourseById(Course t){
+    
+        return 0;
+    
+    }
+    
 }

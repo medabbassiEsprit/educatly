@@ -25,7 +25,7 @@ public class ServiceExercice implements IService<Exercice>{
    @Override
    public void ajouter(Exercice t) {
        try {
-            String qry ="INSERT INTO `personne`( `date_ceation`, `contenu`) VALUES ('"+date+"','"+t.getContenu()+"')";
+            String qry ="INSERT INTO `personne`( `date_ceation`, `contenu`) VALUES ('"+date.toString()+"','"+t.getContenu()+"')";
             Statement stm =cnx.createStatement();
        
        stm.executeUpdate(qry);
@@ -41,7 +41,7 @@ public class ServiceExercice implements IService<Exercice>{
      List<Exercice> exercices = new ArrayList();
         
       try {
-           String qry ="select * from exerice ";
+           String qry ="select * from exercice ";
           
           Statement stm =cnx.createStatement();
           ResultSet rs=  stm.executeQuery(qry);
@@ -67,11 +67,24 @@ public class ServiceExercice implements IService<Exercice>{
     @Override
     public void modifier(Exercice t) {
          //To change body of generated methods, choose Tools | Templates.
+         
+         
     }
 
     @Override
     public void supprimer(Exercice t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //To change body of generated methods, choose Tools | Templates.
+       
+       
+       
+       
+       
+    }
+    
+    public int getExerciceById(Exercice t){
+        
+        return 0;
+        
     }
    
 }
