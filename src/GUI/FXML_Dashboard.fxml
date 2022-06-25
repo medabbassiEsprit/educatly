@@ -66,5 +66,7 @@
             <Text fill="WHITE" layoutX="68.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24;" text="0" />
          </children>
       </AnchorPane>
+      <Text layoutX="87.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 36; -fx-font-weight: 700;" text="Bonjour " />
+      <Text layoutX="222.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 36; -fx-font-weight: 700;" text="NomUser" />
    </children>
 </AnchorPane>
