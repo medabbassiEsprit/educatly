@@ -27,8 +27,10 @@ public class Workshop extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML_login.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/GUI/FXML_Register.fxml"));
         
         Scene scene = new Scene(root);
+        Scene scene1 = new Scene(root1);
         
         stage.initStyle(StageStyle.DECORATED.UNDECORATED);
         root.setOnMousePressed(new EventHandler<MouseEvent>(){
@@ -45,7 +47,25 @@ public class Workshop extends Application {
                 stage.setX(event.getScreenX()- xOffset);
                 stage.setY(event.getScreenY()- yOffset);
             }
+        });        
+        
+        root1.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                xOffset=event.getSceneX();
+                yOffset=event.getSceneY();
+            }
         });
+        
+        root1.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                stage.setX(event.getScreenX()- xOffset);
+                stage.setY(event.getScreenY()- yOffset);
+            }
+        });
+        
+        stage.setScene(scene1);
         stage.setScene(scene);
         stage.show();
     }
