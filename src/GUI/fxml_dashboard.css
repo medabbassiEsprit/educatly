@@ -5,3 +5,17 @@
 .mainFxmlClass {
 
 }
+
+#listStyle{
+  color: #3EC70B ;  
+    
+}
+.listStyleTwo{
+    background-color: #A149FA;
+}
+.textColor {
+   color: white;
+   font-size: 24px;
+   font-weight: bold;
+    
+}
