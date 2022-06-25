@@ -96,11 +96,13 @@ public class FXML_loginController implements Initializable {
                     Stage stage1= (Stage) rm.getScene().getWindow();
                     //stage.setMaximized(true);
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_login.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_DashboardStudent.fxml")));
                     stage.setScene(scene);
                     stage1.setScene(scene);
-                    stage1.show();
+                   
                     stage.show();
+                    stage1.show();
+                    
 
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());

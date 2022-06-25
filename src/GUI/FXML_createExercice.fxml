@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
@@ -25,11 +25,7 @@
       <Text layoutX="245.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoute un qestion" wrappingWidth="201.6708984375" />
       <Text layoutX="245.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter le reponse" wrappingWidth="201.6708984375" />
       <TextArea layoutX="245.0" layoutY="410.0" prefHeight="100.0" prefWidth="433.0" />
-      <Avatar layoutX="949.0" layoutY="53.0">
-         <image>
-            <Image url="@Images/logo.png" />
-         </image>
-      </Avatar>
+     
       <Separator layoutX="687.0" layoutY="223.0" orientation="VERTICAL" prefHeight="312.0" prefWidth="8.0" />
       <Button layoutX="745.0" layoutY="122.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="251.0" style="-fx-background-color: #3EC70B; -fx-text-fill: white;" text="Ajouter" />
       <TextArea layoutX="243.0" layoutY="266.0" prefHeight="75.0" prefWidth="408.0" />
