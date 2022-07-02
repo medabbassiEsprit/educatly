@@ -12,16 +12,33 @@ package entities;
 public class Aide {
     private int id_aide;
     private String contenu;
-    private int id_apprenant;
-    private int id_exercice;
+    private Personne id_apprenant;
+    private Exercice id_exercice;
+  
 
     public Aide() {
     }
 
-    public Aide(int id_aide, String contenu, int id_apprenant, int id_exercice) {
+    public Aide(int id_aide, String contenu, Personne id_apprenant, Exercice id_exercice) {
         this.id_aide = id_aide;
         this.contenu = contenu;
         this.id_apprenant = id_apprenant;
+        this.id_exercice = id_exercice;
+    }
+
+    public Personne getId_apprenant() {
+        return id_apprenant;
+    }
+
+    public void setId_apprenant(Personne id_apprenant) {
+        this.id_apprenant = id_apprenant;
+    }
+
+    public Exercice getId_exercice() {
+        return id_exercice;
+    }
+
+    public void setId_exercice(Exercice id_exercice) {
         this.id_exercice = id_exercice;
     }
 
@@ -41,22 +58,7 @@ public class Aide {
         this.contenu = contenu;
     }
 
-    public int getId_apprenant() {
-        return id_apprenant;
-    }
-
-    public void setId_apprenant(int id_apprenant) {
-        this.id_apprenant = id_apprenant;
-    }
-
-    public int getId_exercice() {
-        return id_exercice;
-    }
-
-    public void setId_exercice(int id_exercice) {
-        this.id_exercice = id_exercice;
-    }
-    
+  
     
     @Override
     public String toString(){

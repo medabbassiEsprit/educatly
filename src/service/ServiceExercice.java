@@ -111,31 +111,18 @@ public class ServiceExercice implements IService<Exercice>{
     @Override
     public void supprimer(Exercice t) {
        //To change body of generated methods, choose Tools | Templates.
-       List<Exercice> exercices = new ArrayList();
+      
 
        try {
            String qry ="DELETE FROM `exercice` WHERE `id_exercice`="+t.getId_exrecice()+"";
-            Statement stm =cnx.createStatement();
-            ResultSet rs=  stm.executeQuery(qry);
-             while(rs.next()){
-             Exercice exer = new Exercice();
-             exer.setId_exrecice(rs.getInt("id_exercice"));
-             exer.setDate_creation(rs.getString(2));
-             exer.setTitre(rs.getString("titreExercice"));
-             exer.setContenu(rs.getString("contenu"));
-             exer.setSolution(rs.getString("solution"));
-             exer.setSolutionDeux(rs.getInt(6));
-             
-         exercices.add(exer);
-           
-          }
-           
+             Statement stm =cnx.createStatement();
+             stm.executeUpdate(qry); 
        }
        catch(SQLException ex){
            System.out.println(ex.getMessage());
        }
        
-        System.out.println(exercices); 
+     
        
     }
     
