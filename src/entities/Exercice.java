@@ -13,16 +13,22 @@ import java.util.Date;
  */
 public class Exercice {
     private int id_exrecice;
-    private Date date_creation;
+    private String date_creation;
+    private String titre;
     private String contenu;
+    private String solution;
+    private int solutionDeux;
 
     public Exercice() {
     }
 
-    public Exercice(int id_exrecice, Date date_creation, String contenu) {
+    public Exercice(int id_exrecice, String date_creation,String titre, String contenu,String solution,int solutionDeux) {
         this.id_exrecice = id_exrecice;
         this.date_creation = date_creation;
+        this.titre=titre;
         this.contenu = contenu;
+        this.solution = solution;
+        this.solutionDeux=solutionDeux;
     }
 
     public int getId_exrecice() {
@@ -33,11 +39,11 @@ public class Exercice {
         this.id_exrecice = id_exrecice;
     }
 
-    public Date getDate_creation() {
+    public String getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(Date date_creation) {
+    public void setDate_creation(String date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -48,9 +54,38 @@ public class Exercice {
     public void setContenu(String contenu) {
         this.contenu = contenu;
     }
+
+    public String getSolution() {
+        return solution;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
+    }
+
+    public int getSolutionDeux() {
+        return solutionDeux;
+    }
+
+    public void setSolutionDeux(int solutionDeux) {
+        this.solutionDeux = solutionDeux;
+    }
+    
+    
+    
     @Override 
     public String toString(){
-        return "date de creation"+ date_creation + "conetnu" + contenu;
+        return "date de creation :"+ date_creation 
+                + "Titre: " + titre
+                + " conetnu :" + contenu+"\n";
     }
     
 }

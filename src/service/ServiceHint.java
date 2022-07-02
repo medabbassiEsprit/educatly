@@ -17,11 +17,14 @@ import utils.MyDb;
  */
 public class ServiceHint  implements IService<Aide>{
      Connection cnx =MyDb.getInstance().getCnx();
-      Date date = new Date();  
 
     @Override
     public void ajouter(Aide t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        
+        
+        
+        
     }
 
     @Override

@@ -6,6 +6,7 @@
 package service;
 
 import entities.Personne;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

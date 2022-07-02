@@ -7,6 +7,9 @@ package service;
 
 import entities.Course;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import utils.MyDb;
@@ -20,22 +23,33 @@ public class ServiceCourse implements IService<Course> {
       Date date = new Date();  
     @Override
     public void ajouter(Course t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          try {
+            String qry ="INSERT INTO `course`( `date_ceation`, `contenu`) VALUES ('"+date.toString()+"','"+t.getContenu()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+        
+        
+        
+        
     }
 
     @Override
     public List<Course> afficher() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Course> course = new ArrayList();
+        return course;
     }
 
     @Override
     public void modifier(Course t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void supprimer(Course t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

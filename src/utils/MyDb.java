@@ -21,13 +21,16 @@ final private String USERNAME ="root";
 final private String PWD ="";
  static private Connection cnx;
 static private MyDb instance;
+
  
 private MyDb(){
  
     try {
+      
         cnx =DriverManager.getConnection(URL, USERNAME, PWD);
     } catch (SQLException ex) {
        System.out.println(ex.getMessage());
+        System.out.println("error here");
    }
  
 }
