@@ -172,6 +172,7 @@ public class FXML_loginController implements Initializable {
         return status;
     }
     
+    
     private void setLblError(Color color, String text) {
         lblErrors.setTextFill(color);
         lblErrors.setText(text);

@@ -9,7 +9,6 @@ package GUI;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,9 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import entities.Personne;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,16 +27,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
-import javax.swing.JTextField;
 import service.ServicePersonne;
-import sun.util.calendar.BaseCalendar.Date;
 
 /**
  * FXML Controller class
@@ -68,8 +57,10 @@ public class FXML_RegisterController implements Initializable {
     private JFXDatePicker dateN;
     @FXML
     private Button register;
+    @FXML
+    private Button next;
+    
    
-                         
     /**
      * Initializes the controller class.
      */
@@ -84,10 +75,12 @@ public class FXML_RegisterController implements Initializable {
 
          role.setItems(list);
          role.setValue("Role");
+         next.setVisible(false);
        
 
        
     } 
+    
     @FXML
     private void register_personne(ActionEvent event) {
           if (event.getSource() == register) {
@@ -147,6 +140,41 @@ public class FXML_RegisterController implements Initializable {
             
         }
 
+    @FXML
+   private void next_btn(ActionEvent event) {
+         if (event.getSource() == next) {
+            //login here
+           
+                try {
+
+                    //add you loading or delays - ;-)
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    //stage.setMaximized(true);
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_Regfr.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
+            
+        }
+    }
+
+    @FXML
+    private void change_role(ActionEvent event) {
+         if("FORMATEUR".equals(role.getSelectionModel().getSelectedItem())){
+            next.setVisible(true);
+            register.setVisible(false);
+        } else {
+             next.setVisible(false);
+            register.setVisible(true);
+        }
+    }
+  
     
     
 }

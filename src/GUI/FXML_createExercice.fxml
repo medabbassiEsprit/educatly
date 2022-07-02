@@ -7,12 +7,10 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1142.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ListView layoutX="44.0" layoutY="168.0" prefHeight="374.0" prefWidth="171.0" style="-fx-background-color: A149FA;" styleClass="listStyleTwo" stylesheets="@fxml_dashboard.css" />
       <Button depthTest="DISABLE" layoutX="85.0" layoutY="219.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" styleClass="listStyleTwo" stylesheets="@fxml_dashboard.css" text="Acceuil" textFill="WHITE" textOverrun="CLIP" />
@@ -25,7 +23,6 @@
       <Text layoutX="245.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoute un qestion" wrappingWidth="201.6708984375" />
       <Text layoutX="245.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter le reponse" wrappingWidth="201.6708984375" />
       <TextArea layoutX="245.0" layoutY="410.0" prefHeight="100.0" prefWidth="433.0" />
-     
       <Separator layoutX="687.0" layoutY="223.0" orientation="VERTICAL" prefHeight="312.0" prefWidth="8.0" />
       <Button layoutX="745.0" layoutY="122.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="251.0" style="-fx-background-color: #3EC70B; -fx-text-fill: white;" text="Ajouter" />
       <TextArea layoutX="243.0" layoutY="266.0" prefHeight="75.0" prefWidth="408.0" />
