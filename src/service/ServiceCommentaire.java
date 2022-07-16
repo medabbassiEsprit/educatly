@@ -7,6 +7,9 @@ package service;
 
 import entities.Commentaire;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
 import utils.MyDb;
@@ -21,7 +24,18 @@ public class ServiceCommentaire implements IService<Commentaire> {
 
     @Override
     public void ajouter(Commentaire t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+          try {
+            String qry ="INSERT INTO `commentaire`(`contenu`, `id_exercice`, `id_user`) VALUES ('"+t.getContenu()+"','"+t.getExerciceId()+"','"+t.getPersonId()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+        
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -36,8 +50,61 @@ public class ServiceCommentaire implements IService<Commentaire> {
 
     @Override
     public void supprimer(Commentaire t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+           String qry ="DELETE FROM `exercice` WHERE `id_exercice`="+t.getId_commentaire()+"";
+             Statement stm =cnx.createStatement();
+             stm.executeUpdate(qry); 
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       } //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public Commentaire getCommentaireByExerciceId(int id){
+        Commentaire cmnt = new Commentaire();
+                    try {
+           String qry ="Select * FROM `exercice` WHERE `id_exercice`="+id+"";
+            Statement stm =cnx.createStatement();
+            ResultSet rs=  stm.executeQuery(qry);
+             while(rs.next()){
+                 cmnt.setId_commentaire(rs.getInt("id_commentaire"));
+                 cmnt.setContenu(rs.getString("contenu"));
+                 cmnt.setExerciceId(rs.getInt("id_exercice "));
+                 cmnt.setPersonId(rs.getInt("id_user"));
+                          
+          }
+           
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
+        
+        return cmnt;
+    }
+    public Commentaire getCommentaireByUserId(int id){
+        Commentaire cmnt = new Commentaire();
+                    try {
+           String qry ="Select * FROM `exercice` WHERE `id_user`="+id+"";
+            Statement stm =cnx.createStatement();
+            ResultSet rs=  stm.executeQuery(qry);
+             while(rs.next()){
+                 cmnt.setId_commentaire(rs.getInt("id_commentaire"));
+                 cmnt.setContenu(rs.getString("contenu"));
+                 cmnt.setExerciceId(rs.getInt("id_exercice "));
+                 cmnt.setPersonId(rs.getInt("id_user"));
+                          
+          }
+           
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
+        
+        return cmnt;
+    }
+    
+    
+    
     
     
 }

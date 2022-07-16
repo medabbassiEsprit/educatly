@@ -12,15 +12,39 @@ package entities;
 public class Commentaire {
     private int id_commentaire;
     private String contenu;
-    private int id_exercice;
+    private int exerciceId;
+    private int personId;
+
+    public Commentaire(int id_commentaire, String contenu, int id_exercice, int exerciceId, int personId) {
+        this.id_commentaire = id_commentaire;
+        this.contenu = contenu;
+      
+        this.exerciceId = exerciceId;
+        this.personId = personId;
+    }
+
+    public int getExerciceId() {
+        return exerciceId;
+    }
+
+    public void setExerciceId(int exerciceId) {
+        this.exerciceId = exerciceId;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
     public Commentaire() {
     }
 
-    public Commentaire(int id_commentaire, String contenu, int id_exercice) {
+    public Commentaire(int id_commentaire, String contenu) {
         this.id_commentaire = id_commentaire;
         this.contenu = contenu;
-        this.id_exercice = id_exercice;
     }
 
     public int getId_commentaire() {
@@ -39,15 +63,10 @@ public class Commentaire {
         this.contenu = contenu;
     }
 
-    public int getId_exercice() {
-        return id_exercice;
-    }
 
-    public void setId_exercice(int id_exercice) {
-        this.id_exercice = id_exercice;
-    }
     @Override 
     public String toString(){
-    return "conetnu"+ contenu + "id_exercice"+ id_exercice;}
+    return "conetnu"+ contenu + "id_exercice"+ exerciceId;}
+
     
 }

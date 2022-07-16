@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +22,14 @@ import utils.MyDb;
  */
 public class ServiceExercice implements IService<Exercice>{
     Connection cnx =MyDb.getInstance().getCnx();
-      Date date = new Date();  
+      java.sql.Date dateNow = new java.sql.Date(System.currentTimeMillis());
+      Timestamp ts = new Timestamp(-10000);
+
+
    @Override
    public void ajouter(Exercice t) {
        try {
-            String qry ="INSERT INTO `personne`( `date_ceation`, `contenu`) VALUES ('"+date.toString()+"','"+t.getContenu()+"')";
+            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solution`,`solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolution()+"','"+t.getSolutionDeux()+"')";
             Statement stm =cnx.createStatement();
        
        stm.executeUpdate(qry);
@@ -35,6 +39,29 @@ public class ServiceExercice implements IService<Exercice>{
        }
       
   }
+   
+   public void ajouterPremierSolution(Exercice t){
+   try {
+            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solution`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolution()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+   }
+   public void ajouterDeuxiemeSolution(Exercice t){
+   try {
+            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolutionDeux()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+   }
 
     @Override
    public List<Exercice> afficher() {
@@ -48,8 +75,12 @@ public class ServiceExercice implements IService<Exercice>{
           while(rs.next()){
              Exercice exer = new Exercice();
              exer.setId_exrecice(rs.getInt("id_exercice"));
+             exer.setDate_creation(rs.getString(2));
+             exer.setTitre(rs.getString("titreExercice"));
              exer.setContenu(rs.getString("contenu"));
-             exer.setDate_creation(rs.getDate("date_creation"));
+             exer.setSolution(rs.getString("solution"));
+             exer.setSolutionDeux(rs.getInt(6));
+             
          exercices.add(exer);
           }
            
@@ -58,6 +89,7 @@ public class ServiceExercice implements IService<Exercice>{
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
        }
+      System.out.println(exercices);
       return exercices;
    }
 
@@ -67,23 +99,83 @@ public class ServiceExercice implements IService<Exercice>{
     @Override
     public void modifier(Exercice t) {
          //To change body of generated methods, choose Tools | Templates.
+     List<Exercice> exercices = new ArrayList();
+
+               try {
+           String qry ="UPDATE `exercice` SET `titreExercice`='"+t.getTitre()+"',`contenu`='"+t.getContenu()+"',`solution`='"+t.getSolution()+"',`solutionDeux`='"+t.getSolutionDeux()+"' WHERE `id_exercice` = `"+t.getId_exrecice()+"`";
+          
+          Statement stm =cnx.createStatement();
+          ResultSet rs=  stm.executeQuery(qry);
+          while(rs.next()){
+             Exercice exer = new Exercice();
+             exer.setId_exrecice(rs.getInt("id_exercice"));
+             exer.setDate_creation(rs.getString(2));
+             exer.setTitre(rs.getString("titreExercice"));
+             exer.setContenu(rs.getString("contenu"));
+             exer.setSolution(rs.getString("solution"));
+             exer.setSolutionDeux(rs.getInt(6));
+             
+         exercices.add(exer);
+           
+          }
+           
+           
+         
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+       }
+      
+   }
          
          
-    }
+         
+    
 
     @Override
     public void supprimer(Exercice t) {
        //To change body of generated methods, choose Tools | Templates.
+      
+
+       try {
+           String qry ="DELETE FROM `exercice` WHERE `id_exercice`="+t.getId_exrecice()+"";
+             Statement stm =cnx.createStatement();
+             stm.executeUpdate(qry); 
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
        
-       
-       
-       
+     
        
     }
     
-    public int getExerciceById(Exercice t){
-        
-        return 0;
+    public Exercice getExerciceById(int id){
+        Exercice exerc = new Exercice();
+            try {
+           String qry ="Select * FROM `exercice` WHERE `id_exercice`="+id+"";
+            Statement stm =cnx.createStatement();
+            ResultSet rs=  stm.executeQuery(qry);
+             while(rs.next()){
+             exerc.setId_exrecice(rs.getInt("id_exercice"));
+             exerc.setDate_creation(rs.getString(2));
+             exerc.setTitre(rs.getString("titreExercice"));
+             exerc.setContenu(rs.getString("contenu"));
+             if(rs.getString("solution") == null)
+             { exerc.setSolution("empty"); }
+             else {exerc.setSolution(rs.getString("solution"));}
+             if(rs.getString("solutionDeux") == null)
+             { exerc.setSolutionDeux(99);}
+             else {exerc.setSolution(rs.getString("solutionDeux"));}
+         
+           
+          }
+           
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
+          System.out.println(exerc);    
+        return exerc;
         
     }
    
