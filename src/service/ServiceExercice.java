@@ -39,6 +39,29 @@ public class ServiceExercice implements IService<Exercice>{
        }
       
   }
+   
+   public void ajouterPremierSolution(Exercice t){
+   try {
+            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solution`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolution()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+   }
+   public void ajouterDeuxiemeSolution(Exercice t){
+   try {
+            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolutionDeux()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+   }
 
     @Override
    public List<Exercice> afficher() {
@@ -133,14 +156,16 @@ public class ServiceExercice implements IService<Exercice>{
             Statement stm =cnx.createStatement();
             ResultSet rs=  stm.executeQuery(qry);
              while(rs.next()){
-            
              exerc.setId_exrecice(rs.getInt("id_exercice"));
              exerc.setDate_creation(rs.getString(2));
              exerc.setTitre(rs.getString("titreExercice"));
              exerc.setContenu(rs.getString("contenu"));
-             exerc.setSolution(rs.getString("solution"));
-             exerc.setSolutionDeux(rs.getInt(6));
-             
+             if(rs.getString("solution") == null)
+             { exerc.setSolution("empty"); }
+             else {exerc.setSolution(rs.getString("solution"));}
+             if(rs.getString("solutionDeux") == null)
+             { exerc.setSolutionDeux(99);}
+             else {exerc.setSolution(rs.getString("solutionDeux"));}
          
            
           }

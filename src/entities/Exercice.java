@@ -83,9 +83,10 @@ public class Exercice {
     
     @Override 
     public String toString(){
-        return "date de creation :"+ date_creation 
-                + "Titre: " + titre
-                + " conetnu :" + contenu+"\n";
+        return " Service ==> \n date de creation :"
+                + date_creation 
+                + " \n Titre: " + titre
+                + " conetnu :" + contenu+"\n" +solution +"\n" +solutionDeux;
     }
     
 }

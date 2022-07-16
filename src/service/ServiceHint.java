@@ -66,11 +66,7 @@ public class ServiceHint  implements IService<Aide>{
         return aide;
     }
 
-    @Override
-    public void modifier(Aide t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public void supprimer(Aide t) {
        
@@ -83,6 +79,17 @@ public class ServiceHint  implements IService<Aide>{
            System.out.println(ex.getMessage());
        } //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void modifier(Aide t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
+    
+    
     
     
     
