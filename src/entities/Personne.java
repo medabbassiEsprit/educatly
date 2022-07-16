@@ -5,7 +5,9 @@
  */
 package entities;
 
+import java.io.File;
 import java.sql.Date;
+import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 
 
@@ -21,7 +23,7 @@ import javafx.scene.control.DatePicker;
 
 public class Personne {
     private int id;
-    private String nom ,prenom,username,email,password,role,phoneNumber;
+    private String nom ,prenom,username,email,password,role,phoneNumber,file_formateur;
     private Date dateN;
     
     
@@ -42,7 +44,39 @@ public class Personne {
         this.role=role;
     }
 
- 
+    public Personne(String file_formateur) {
+        this.file_formateur = file_formateur;
+    }
+
+    public Personne(int id, String nom, String prenom, String username, String email, String password,String phoneNumber, Date dateN, String role, String file_formateur) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.dateN = dateN;
+        this.role = role;
+        this.file_formateur = file_formateur;
+        
+    }
+
+   
+
+  
+
+   
+
+    public String getFile_formateur() {
+        return file_formateur;
+    }
+
+    public void setFile_formateur(String file_formateur) {
+        this.file_formateur = file_formateur;
+    }
+
+    
    
 
     public int getId() {
@@ -124,8 +158,10 @@ public class Personne {
 
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", phoneNumber=" + phoneNumber + ", dateN=" + dateN + '}';
+        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", phoneNumber=" + phoneNumber + ", file_formateur=" + file_formateur + ", dateN=" + dateN + '}';
     }
+
+    
    
   
     

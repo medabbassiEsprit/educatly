@@ -39,6 +39,33 @@ public class ServicePersonne implements IService<Personne>{
        }
       
   }
+    public void ajouterF(Personne t1) {
+       try {
+            String qry ="INSERT INTO `users`(`nom`, `prenom`,`username`,`email`,`password`,`role`,`phoneNumber`,`dateN`,`file_formateur`) "
+                    + "VALUES ('"+t1.getNom()+"','"+t1.getPrenom()+"','"+t1.getUsername()+"','"+t1.getEmail()+"','"+t1.getPassword()+"','"+t1.getRole()+"','"+t1.getPhoneNumber()+"','"+t1.getDateN()+"','"+t1.getFile_formateur()+"')";
+            Statement stm =cnx.createStatement();
+       
+       stm.executeUpdate(qry);
+           
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+       }
+      
+  }
+      public void update(Personne t1){
+       try{
+        String qry= "UPDATE `USERS` " +
+                    "SET nom = '" + t1.getNom() + "' prenom " +t1.getPrenom()+ "' email " +t1.getEmail()+"' password " +t1.getPassword()+"' phoneNumber "+t1.getPhoneNumber()+"' dateN "+t1.getDateN()+ "WHERE nom = '"+t1.getNom()+"')";
+                    
+           Statement stm =cnx.createStatement();
+       
+      stm.executeUpdate(qry);
+       
+       } catch (SQLException ex) {
+           System.out.println(ex.getMessage()); 
+      }
+    }
 
     @Override
    public List<Personne> afficher() {
@@ -60,6 +87,7 @@ public class ServicePersonne implements IService<Personne>{
              p.setPhoneNumber(rs.getString("phoneNumber"));
              p.setRole(rs.getString("Role"));
              p.setDateN(rs.getDate("DateN"));
+             p.setFile_formateur(rs.getString("file_formateur"));
         
          personnes.add(p);
           }

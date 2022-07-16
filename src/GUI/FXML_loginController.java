@@ -71,7 +71,7 @@ public class FXML_loginController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow();
                     //stage.setMaximized(true);
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_Register.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_add.fxml")));
                     stage.setScene(scene);
                     stage.show();
         }
@@ -81,12 +81,14 @@ public class FXML_loginController implements Initializable {
 
         if (event.getSource() == eLogin) {
             //login here
-            if (logIn().equals("Success")&& rm.isSelected()) {
+            if (logIn().equals("Success")) {
                      
+                if(rm.isSelected()){
+             
                     preferences.put("username", eName.getText());
                     preferences.put("password", eKey.getText());
                     
-                  
+                }
                     
                 try {
                     
