@@ -5,6 +5,7 @@
  */
 package service;
 
+import com.mysql.jdbc.PreparedStatement;
 import entities.Personne;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,6 +26,16 @@ import utils.MyDb;
  */
 public class ServicePersonne implements IService<Personne>{
     Connection cnx =MyDb.getInstance().getCnx();
+    
+    //singleton
+    public static ServicePersonne Instance=null;
+    
+    public static ServicePersonne getInstance(){
+        if(Instance == null)
+            Instance = new ServicePersonne();
+        return Instance;
+       
+    }
    @Override
    public void ajouter(Personne t) {
        try {
@@ -53,18 +64,26 @@ public class ServicePersonne implements IService<Personne>{
        }
       
   }
-      public void update(Personne t1){
+      public static int update(Personne t1){
+          int st =0;
        try{
-        String qry= "UPDATE `USERS` " +
-                    "SET nom = '" + t1.getNom() + "' prenom " +t1.getPrenom()+ "' email " +t1.getEmail()+"' password " +t1.getPassword()+"' phoneNumber "+t1.getPhoneNumber()+"' dateN "+t1.getDateN()+ "WHERE nom = '"+t1.getNom()+"')";
-                    
-           Statement stm =cnx.createStatement();
-       
-      stm.executeUpdate(qry);
+        String qry= "UPDATE users SET nom = ?, prenom=?, email=? ,phoneNumber=? , WHERE username =?";
+             Connection cnx = MyDb.getCnx();
+             PreparedStatement stm;
+             stm =(PreparedStatement) cnx.prepareStatement(qry);
+                
+             stm.setString(1,t1.getNom());
+             stm.setString(2,t1.getPrenom());
+             stm.setString(2,t1.getEmail());
+             stm.setString(2,t1.getPhoneNumber());
+             stm.setString(2,t1.getUsername());
+             st= stm.executeUpdate();
+             cnx.close();
        
        } catch (SQLException ex) {
-           System.out.println(ex.getMessage()); 
+           ex.printStackTrace();
       }
+       return st;
     }
 
     @Override
@@ -107,5 +126,32 @@ public class ServicePersonne implements IService<Personne>{
    @Override
    public void supprimer(Personne t) {
    }
+   
+   public static Personne getPersonneUser(String username){
+       Personne u = new Personne();
+       try{
+            String sql = "select * from users where username=?";
+            
+             Connection cnx = MyDb.getCnx();
+             PreparedStatement stat;
+            stat =(PreparedStatement) cnx.prepareStatement(sql);
+               stat.setString(1, username);
+               ResultSet rst=stat.executeQuery();
+              if(rst.next()){
+             u.setUsername(rst.getString("Username"));
+             u.setNom(rst.getString("nom"));
+             u.setPrenom(rst.getString("prenom"));
+             u.setEmail(rst.getString("email"));
+             u.setPhoneNumber(rst.getString("phoneNumber"));
+            // u.setDateN(rst.getDate("date"));
+              }
+             cnx.close();
+       
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+       return u;
+   }
+   
    
 }

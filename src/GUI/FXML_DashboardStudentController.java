@@ -34,7 +34,12 @@ public class FXML_DashboardStudentController implements Initializable {
     private Text logout;
     @FXML
     private FontAwesomeIconView Eprofil;
+    @FXML
+    private Text username;
 
+    
+    
+    
     /**
      * Initializes the controller class.
      */

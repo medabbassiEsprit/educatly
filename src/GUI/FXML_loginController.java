@@ -6,6 +6,7 @@
 package GUI;
 
 import com.jfoenix.controls.JFXCheckBox;
+import entities.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import java.io.IOException;
@@ -158,6 +159,8 @@ public class FXML_loginController implements Initializable {
                 preparedStatement.setString(2, password);
                 resultSet = preparedStatement.executeQuery();
                 if (!resultSet.next()) {
+                    User u=new User();
+                    u.setId(0);
                     setLblError(Color.TOMATO, "Enter Correct name/Password");
                     status = "Error";
                 } else {

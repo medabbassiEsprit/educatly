@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
@@ -28,7 +29,8 @@
                         <Image url="@Images/us.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Mayssa Khalifa">
+                  <JFXTextField fx:id="enter" focusColor="#b6e854" prefHeight="25.0" prefWidth="50.0" unFocusColor="#4d4d4d49" />
+                  <Label fx:id="userN" prefHeight="27.0" prefWidth="107.0">
                      <font>
                         <Font name="Bodoni MT Black Italic" size="18.0" />
                      </font>
@@ -36,7 +38,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton style="-fx-background-radius: 30;" styleClass="cursor_hand" text="Edit Profile" textFill="#b6e854" />
+                  <JFXButton onAction="#editPo" style="-fx-background-radius: 30;" styleClass="cursor_hand" text="Edit Profile" textFill="#b6e854" />
                </children>
             </VBox>
             <HBox alignment="CENTER_LEFT" styleClass="hover_border">
@@ -185,7 +187,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
+                        <JFXTextField fx:id="firstname" focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="884.0">
@@ -196,18 +198,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="884.0">
-                     <children>
-                        <Label prefHeight="20.0" prefWidth="98.0" text="UserName">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
+                        <JFXTextField fx:id="lastname" focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="884.0">
@@ -218,7 +209,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
+                        <JFXDatePicker fx:id="dateU" defaultColor="#b6e854" prefHeight="25.0" prefWidth="318.0" />
                      </children>
                   </HBox>
                </children>
@@ -241,7 +232,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
+                        <JFXTextField fx:id="phone" focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="884.0">
@@ -252,7 +243,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="200.0" prefWidth="160.0" />
-                        <JFXTextField focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
+                        <JFXTextField fx:id="email" focusColor="#b6e854" prefHeight="25.0" prefWidth="289.0" unFocusColor="#4d4d4d73" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="1.0" prefWidth="884.0">
@@ -262,7 +253,7 @@
                   </HBox>
                </children>
             </VBox>
-            <JFXButton prefHeight="50.0" prefWidth="155.0" style="-fx-background-radius: 30;" styleClass="cursor_hand" text="Save Changes" textFill="#b6e854">
+            <JFXButton fx:id="btnU" onAction="#update" prefHeight="50.0" prefWidth="155.0" style="-fx-background-radius: 30;" styleClass="cursor_hand" text="Save Changes" textFill="#b6e854">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

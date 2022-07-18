@@ -9,6 +9,7 @@ import java.io.File;
 import java.sql.Date;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 
 
 
@@ -160,6 +161,8 @@ public class Personne {
     public String toString() {
         return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", phoneNumber=" + phoneNumber + ", file_formateur=" + file_formateur + ", dateN=" + dateN + '}';
     }
+
+   
 
     
    
