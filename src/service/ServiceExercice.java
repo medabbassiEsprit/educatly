@@ -53,7 +53,11 @@ public class ServiceExercice implements IService<Exercice>{
    }
    public void ajouterDeuxiemeSolution(Exercice t){
    try {
-            String qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolutionDeux()+"')";
+           String qry="";     
+            if(t.getSolution() =="")  { qry ="INSERT INTO `exercice`( `titreExercice`,`contenu`,`solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+",empty,"+t.getSolutionDeux()+"')";}
+            else if(t.getSolutionDeux()== 0)  { qry ="INSERT INTO `exercice`( `titreExercice`, `contenu`, `solution`, `solutionDeux`) VALUES ('"+t.getTitre()+"','"+t.getContenu()+"','"+t.getSolution()+"','0')";}
+            else{
+            }
             Statement stm =cnx.createStatement();
        
        stm.executeUpdate(qry);
@@ -153,6 +157,31 @@ public class ServiceExercice implements IService<Exercice>{
         Exercice exerc = new Exercice();
             try {
            String qry ="Select * FROM `exercice` WHERE `id_exercice`="+id+"";
+            Statement stm =cnx.createStatement();
+            ResultSet rs=  stm.executeQuery(qry);
+             while(rs.next()){
+             exerc.setId_exrecice(rs.getInt("id_exercice"));
+             exerc.setDate_creation(rs.getString(2));
+             exerc.setTitre(rs.getString("titreExercice"));
+             exerc.setContenu(rs.getString("contenu"));
+             exerc.setSolution(rs.getString("solution"));
+             exerc.setSolutionDeux(Integer.valueOf(rs.getString("solutionDeux")));
+         
+           
+          }
+           
+       }
+       catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
+          System.out.println(exerc);    
+        return exerc;
+        
+    }
+     public Exercice getExerciceByTitle(String title){
+        Exercice exerc = new Exercice();
+            try {
+           String qry ="Select * FROM `exercice` WHERE `titre`="+title+"";
             Statement stm =cnx.createStatement();
             ResultSet rs=  stm.executeQuery(qry);
              while(rs.next()){

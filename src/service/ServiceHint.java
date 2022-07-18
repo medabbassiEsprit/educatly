@@ -62,7 +62,7 @@ public class ServiceHint  implements IService<Aide>{
      public Aide getHintByExerciceId(int id){
         Aide hint = new Aide();
                     try {
-           String qry ="Select * FROM `exercice` WHERE `id_exercice`="+id+"";
+           String qry ="Select * FROM `aide` WHERE `id_exercice`="+id+"";
             Statement stm =cnx.createStatement();
             ResultSet rs=  stm.executeQuery(qry);
              while(rs.next()){
