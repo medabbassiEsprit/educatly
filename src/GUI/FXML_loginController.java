@@ -6,7 +6,9 @@
 package GUI;
 
 import com.jfoenix.controls.JFXCheckBox;
+import entities.Personne;
 import entities.User;
+import javafx.scene.Cursor;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import java.io.IOException;
@@ -29,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import service.ServicePersonne;
 import utils.MyDb;
 
 /**
@@ -57,6 +60,10 @@ public class FXML_loginController implements Initializable {
     
     Preferences preferences;
     
+    
+    @FXML
+    private Hyperlink fp;
+    
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
@@ -79,44 +86,120 @@ public class FXML_loginController implements Initializable {
     }
     @FXML
     public void handleButtonAction(MouseEvent event) {
+        ServicePersonne sp = new ServicePersonne();
+        Personne pr=new Personne();
+        String username = eName.getText();
+        String password = eKey.getText();
+            utils.User.UserNetsed u = new utils.User.UserNetsed();
+
+       
 
         if (event.getSource() == eLogin) {
             //login here
-            if (logIn().equals("Success")) {
+//            if (logIn().equals("Success")) {
                      
-                if(rm.isSelected()){
+               /* if(rm.isSelected()){
              
                     preferences.put("username", eName.getText());
                     preferences.put("password", eKey.getText());
                     
-                }
-                    
-                try {
-                    
-                    //add you loading or delays - ;-)
-                    Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-                    Stage stage1= (Stage) rm.getScene().getWindow();
-                    //stage.setMaximized(true);
-                    stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_DashboardStudent.fxml")));
-                    stage.setScene(scene);
-                    stage1.setScene(scene);
+                }*/
+            try
+             {
+                   Personne userValidate = sp.auth(username,password);
+                    u.setP(userValidate);
+                    if(userValidate.getRole().equals("ADMIN"))
+                    {
+                        System.out.println("Admin's Home");
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
+                        Stage stage1= (Stage) rm.getScene().getWindow();
+                        //stage.setMaximized(true);
+                        stage.close();
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_DashboardStudent.fxml")));
+                        stage.setScene(scene);
+                        stage1.setScene(scene);
                    
-                    stage.show();
-                    stage1.show();
-                    
+                       stage.show();
+                       stage1.show();
+                    }
+                    else if(userValidate.getRole().equals("FORMATEUR"))
+                    {
+                        System.out.println("FORMATEUR's Home");
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
+                        Stage stage1= (Stage) rm.getScene().getWindow();
+                        //stage.setMaximized(true);
+                        stage.close();
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_Reset.fxml")));
+                        stage.setScene(scene);
+                        stage1.setScene(scene);
+                   
+                       stage.show();
+                       stage1.show();
 
-                } catch (IOException ex) {
-                    System.err.println(ex.getMessage());
+                        
+                    }
+                    else if(userValidate.getRole().equals("APPRENANT"))
+                    {
+                        System.out.println("APPRENANT's Home");
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
+                        Stage stage1= (Stage) rm.getScene().getWindow();
+                        //stage.setMaximized(true);
+                        stage.close();
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_Editprofil.fxml")));
+                        stage.setScene(scene);
+                        stage1.setScene(scene);
+                   
+                       stage.show();
+                       stage1.show();
+
+                        
+                    }
+                    else
+                    {
+                        System.out.println("Error message = "+userValidate);
+                        
+                        
+                    }
                 }
-                
+                catch (IOException e1)
+                {
+                    e1.printStackTrace();
+                }
+                catch (Exception e2)
+                {
+                    e2.printStackTrace();
+                }
 
-            }
+                    
+//                try {
+//                    
+//                    //add you loading or delays - ;-)
+//                    Node node = (Node) event.getSource();
+//                    Stage stage = (Stage) node.getScene().getWindow();
+//                    Stage stage1= (Stage) rm.getScene().getWindow();
+//                    //stage.setMaximized(true);
+//                    stage.close();
+//                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_DashboardStudent.fxml")));
+//                    stage.setScene(scene);
+//                    stage1.setScene(scene);
+//                   
+//                    stage.show();
+//                    stage1.show();
+//                    
+//
+//                } catch (IOException ex) {
+//                    System.err.println(ex.getMessage());
+//                }
+//                
+
+            /*}
             else {
                 preferences.put("username", "");
                 preferences.put("password", "");
-                 }
+                 }*/
         }
     }
     
@@ -184,6 +267,35 @@ public class FXML_loginController implements Initializable {
         System.out.println(text);
     }
 
+    @FXML
+    private void forgetPass(MouseEvent event) {
+        
+        fp.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    private void exit(MouseEvent event) {
+    }
+
+    @FXML
+    private void passfr(MouseEvent event) throws IOException {
+        if (event.getSource() == fp) {
+            //add you loading or delays - ;-)
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    //stage.setMaximized(true);
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXML_Forgotpass.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+        }
+        
+    }
+
+
+    
+ 
+    
     
 
     

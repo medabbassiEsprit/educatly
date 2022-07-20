@@ -1,38 +1,287 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ListView layoutX="44.0" layoutY="168.0" prefHeight="374.0" prefWidth="171.0" style="-fx-background-color: A149FA;" styleClass="listStyleTwo" stylesheets="@fxml_dashboard.css" />
-      <Button depthTest="DISABLE" layoutX="85.0" layoutY="219.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" styleClass="listStyleTwo" stylesheets="@fxml_dashboard.css" text="Acceuil" textFill="WHITE" textOverrun="CLIP" />
-      <Button layoutX="88.0" layoutY="311.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" text="Exercice" textFill="#eeeeee" />
-      <Button layoutX="87.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" text="Cours" textFill="WHITE" />
-      <Button layoutX="89.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" text="Session en ligne" textFill="WHITE" />
-      <Button layoutX="88.0" layoutY="404.0" mnemonicParsing="false" style="-fx-background-color: A149FA;" text="Outils" textFill="WHITE" />
-      <Button layoutX="67.0" layoutY="466.0" mnemonicParsing="false" style="-fx-background-color: A149FA; -fx-font-size: 16;" text="Se déconnecter" textFill="WHITE" />
-      <Text layoutX="107.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 36; -fx-font-weight: 700;" text="Bonjour Nomuser" />
-      <Text layoutX="245.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoute un qestion" wrappingWidth="201.6708984375" />
-      <Text layoutX="245.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter le reponse" wrappingWidth="201.6708984375" />
-      <TextArea layoutX="245.0" layoutY="410.0" prefHeight="100.0" prefWidth="433.0" />
-      <Separator layoutX="687.0" layoutY="223.0" orientation="VERTICAL" prefHeight="312.0" prefWidth="8.0" />
-      <Button layoutX="745.0" layoutY="122.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="251.0" style="-fx-background-color: #3EC70B; -fx-text-fill: white;" text="Ajouter" />
-      <TextArea layoutX="243.0" layoutY="266.0" prefHeight="75.0" prefWidth="408.0" />
-      <MenuButton layoutX="245.0" layoutY="169.0" mnemonicParsing="false" text="NomDeCourse">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <Text layoutX="706.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoute un qestion" wrappingWidth="201.6708984375" />
-      <TextArea layoutX="706.0" layoutY="243.0" prefHeight="75.0" prefWidth="380.0" />
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1224.0" stylesheets="@Styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_DashboardStudentController">
+   <top>
+      <HBox style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxWidth="-Infinity" prefWidth="150.0">
+               <children>
+                  <ImageView fitHeight="58.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor_hand">
+                     <image>
+                        <Image url="@Images/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <JFXTextField focusColor="#b6e854" promptText="Search" style="-fx-background-color: transparent; -fx-prompt-text-fill: #b6e854;" unFocusColor="#4d4d4d33">
+                           <HBox.margin>
+                              <Insets left="5.0" right="10.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <FontAwesomeIconView fill="#b6e854" glyphName="SEARCH" size="1.5em" styleClass="cursor_hand" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <FontAwesomeIconView glyphName="BELL" size="1.3em" styleClass="cursor_hand" />
+                        <ImageView fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor_hand">
+                           <image>
+                              <Image url="@Images/us.jpg" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bolder;" text="Mayssa khalifa" />
+                        <FontAwesomeIconView fx:id="Eprofil" glyphName="ANGLE_DOWN" onMouseClicked="#editP" size="1.5em" styleClass="cursor_hand">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                        <VBox>
+                           <children>
+                              <Label fx:id="btn_exit" layoutX="675.0" layoutY="2.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="21.0" text="X" textFill="#b6e854">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox maxWidth="-Infinity" prefWidth="166.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="CIRCLE_ALT_NOTCH" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Dashborad">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="CALENDAR_ALT" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Cours">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="LIST_UL" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Exercices">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="FILE_TEXT_ALT" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Invoice">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="ENVELOPE_ALT" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Messages">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#485460" glyphName="NEWSPAPER_ALT" size="1.5em" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Reports">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <FontAwesomeIconView fill="#485460" glyphName="COG" size="1.5em" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Settings">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" styleClass="hover_border">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <FontAwesomeIconView fill="#485460" glyphName="USER" size="1.5em" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Contact Support">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#Logout" styleClass="hover_border">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <FontAwesomeIconView fill="#485460" glyphName="SIGN_OUT" size="1.5em" />
+                        <Text fx:id="logout" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="Logout">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Ajouter Exercice" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" />
+                        <JFXButton prefHeight="34.0" prefWidth="177.0" style="-fx-background-color: #b6e854; -fx-background-radius: 0px; -fx-text-fill: white; -fx-font-family: Quicksand; -fx-font-weight: bold;" styleClass="cursor_hand" text="Ajouter ">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1000.0">
+               <children>
+                  <Text lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Titre" textAlignment="CENTER" wrappingWidth="227.86572265625" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <TextField alignment="CENTER" prefHeight="50.0" prefWidth="422.0" />
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Contenu" textAlignment="CENTER" wrappingWidth="227.86572265625" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <TextArea prefHeight="100.0" prefWidth="418.0" />
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Solution syntaxique" textAlignment="CENTER" wrappingWidth="227.86572265625" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <TextField alignment="CENTER" prefHeight="50.0" prefWidth="422.0" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="**Si la reponse un seul  phrase " />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Solution numerique" textAlignment="CENTER" wrappingWidth="227.86572265625" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <TextField alignment="CENTER" prefHeight="50.0" prefWidth="422.0" />
+                  <HBox prefHeight="100.0" prefWidth="47.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="**Si la reponse Quiz un seul  reponse" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

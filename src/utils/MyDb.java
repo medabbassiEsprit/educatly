@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author mayssa
  */
 public class MyDb {
-final private String URL ="jdbc:mysql://127.0.0.1:3306/educatly";
+final private String URL ="jdbc:mysql://localhost:3306/educatly";
 final private String USERNAME ="root";
 final private String PWD ="";
  static private Connection cnx;

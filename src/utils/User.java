@@ -12,21 +12,31 @@ import entities.Personne;
  * @author hp
  */
 public class User extends Personne{
-   private static Personne user;
-   
-   
+        
+        
+  public static   Personne  p = new Personne();
+ 
+    // Non-static nested class -
+    // also called Inner class
+
     public User() {
-        super();
-    }
-    
-    
-    public static Personne getUser() {
-        return user;
     }
 
-    public static void setUser(Personne user) {
-        User.user = user;
+    
+
+   
+      // Static nested class
+    public static class UserNetsed {
+ 
+        // Only static members of Outer class
+        // is directly accessible in nested
+        // static class
+            public  Personne getP() {
+                     return p;
     }
-    
-    
+
+            public  void setP(Personne p) {
+                User.p = p;
+    }
+    }
 }

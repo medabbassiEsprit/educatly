@@ -48,6 +48,7 @@ public class Personne {
     public Personne(String file_formateur) {
         this.file_formateur = file_formateur;
     }
+   
 
     public Personne(int id, String nom, String prenom, String username, String email, String password,String phoneNumber, Date dateN, String role, String file_formateur) {
         this.id = id;

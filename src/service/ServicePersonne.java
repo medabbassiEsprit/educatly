@@ -5,19 +5,17 @@
  */
 package service;
 
-import com.mysql.jdbc.PreparedStatement;
+
+
 import entities.Personne;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.DatePicker;
 import utils.MyDb;
 
 /**
@@ -29,13 +27,53 @@ public class ServicePersonne implements IService<Personne>{
     
     //singleton
     public static ServicePersonne Instance=null;
-    
-    public static ServicePersonne getInstance(){
-        if(Instance == null)
-            Instance = new ServicePersonne();
+   
+   public static ServicePersonne getInstance(){
+       if(Instance == null)
+           Instance = new ServicePersonne();
         return Instance;
+      
+   }
+   public Personne auth(String username,String password) {
+       Personne p = new Personne();
+     
        
+      String a= new String() ;
+      
+    try
+    {   String sql = "SELECT * FROM `users` Where `username` = '"+username+"' AND `password` = '"+password+"'";
+        Statement stm =cnx.createStatement();
+        ResultSet rs=  stm.executeQuery(sql);
+        System.out.println("======>"+sql);
+        while(rs.next())
+        {
+           p.setUsername( rs.getString("username"));
+           p.setPassword(rs.getString("password")); 
+           p.setRole(rs.getString("role"));
+           p.setNom(rs.getString("nom"));
+           p.setPrenom(rs.getString("prenom"));
+           p.setPhoneNumber(rs.getString("phoneNumber"));
+           p.setEmail(rs.getString("email"));
+           
+           
+            
+//            if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("ADMIN"))
+//            p.setRole("ADMIN");
+//            else if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("FORMATEUR"))
+//            p.setRole("FORMATEUR");
+//            else if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("APPRENANT"))
+//            p.setRole("APPRENANT");
+           
+        }
     }
+    catch(SQLException e)
+    {
+        e.printStackTrace();
+    }
+    return p;
+   }
+   
+   
    @Override
    public void ajouter(Personne t) {
        try {
@@ -64,26 +102,22 @@ public class ServicePersonne implements IService<Personne>{
        }
       
   }
-      public static int update(Personne t1){
-          int st =0;
+      public void update(String nom,String prenom,String phoneNumber , String email , String username) {
+         Personne p = new Personne();
        try{
-        String qry= "UPDATE users SET nom = ?, prenom=?, email=? ,phoneNumber=? , WHERE username =?";
-             Connection cnx = MyDb.getCnx();
-             PreparedStatement stm;
-             stm =(PreparedStatement) cnx.prepareStatement(qry);
-                
-             stm.setString(1,t1.getNom());
-             stm.setString(2,t1.getPrenom());
-             stm.setString(2,t1.getEmail());
-             stm.setString(2,t1.getPhoneNumber());
-             stm.setString(2,t1.getUsername());
-             st= stm.executeUpdate();
-             cnx.close();
+            String requet= "UPDATE `users` SET `nom`='"+nom+"',`prenom`='"+prenom+"',`email`='"+email+"',`phoneNumber`='"+phoneNumber+"' WHERE `username`='"+username+"'";
+                    
+                  Statement stm =cnx.createStatement();
+                  stm.executeUpdate(requet);
+                  
+                  
+                  
+                  
        
        } catch (SQLException ex) {
            ex.printStackTrace();
       }
-       return st;
+       
     }
 
     @Override
@@ -127,31 +161,7 @@ public class ServicePersonne implements IService<Personne>{
    public void supprimer(Personne t) {
    }
    
-   public static Personne getPersonneUser(String username){
-       Personne u = new Personne();
-       try{
-            String sql = "select * from users where username=?";
-            
-             Connection cnx = MyDb.getCnx();
-             PreparedStatement stat;
-            stat =(PreparedStatement) cnx.prepareStatement(sql);
-               stat.setString(1, username);
-               ResultSet rst=stat.executeQuery();
-              if(rst.next()){
-             u.setUsername(rst.getString("Username"));
-             u.setNom(rst.getString("nom"));
-             u.setPrenom(rst.getString("prenom"));
-             u.setEmail(rst.getString("email"));
-             u.setPhoneNumber(rst.getString("phoneNumber"));
-            // u.setDateN(rst.getDate("date"));
-              }
-             cnx.close();
-       
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
-       return u;
-   }
+   
    
    
 }
