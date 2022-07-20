@@ -88,6 +88,8 @@ public class FXML_ForgotpassController implements Initializable {
 
     @FXML
     private void envoyer_btn(ActionEvent event) {
+        utils.User.UserNetsed u = new utils.User.UserNetsed();
+        
         try{
         Random rand = new Random();
         randomcode = rand.nextInt(999999);
@@ -95,6 +97,7 @@ public class FXML_ForgotpassController implements Initializable {
         String user = "mayssa.khalifa@esprit.tn";
         String pass = "bhwztbgsbynvkjvb";
         String to = email.getText();
+        u.setEmail(to);
         String subject ="Reseting code ";
         String message ="your reset code is "+randomcode;
          

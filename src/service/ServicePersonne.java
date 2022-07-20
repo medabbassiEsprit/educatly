@@ -116,14 +116,15 @@ public class ServicePersonne implements IService<Personne>{
       }
        
     }
-      public void updatePassword(String password,String username) {
+      public void updatePassword(String password,String email) {
          Personne p = new Personne();
        try{
-            String requet= "UPDATE `users` SET `password`='"+password+"' WHERE `email`='"+username+"'";
+            String requet= "UPDATE `users` SET `password`='"+password+"' WHERE `email`='"+email+"'";
                     
                  Statement stm =cnx.createStatement();
                  stm.executeUpdate(requet);
                   JOptionPane.showMessageDialog(null, "Reset Successfully");
+                   System.out.println("=====>up"+email + password);
           
        } catch (SQLException ex) {
            ex.printStackTrace();

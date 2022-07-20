@@ -15,6 +15,8 @@ public class User extends Personne{
         
         
   public static   Personne  p = new Personne();
+   public static String email;
+
  
     // Non-static nested class -
     // also called Inner class
@@ -31,6 +33,15 @@ public class User extends Personne{
         // Only static members of Outer class
         // is directly accessible in nested
         // static class
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            User.email = email;
+        }
+            
             public  Personne getP() {
                      return p;
     }
@@ -39,4 +50,5 @@ public class User extends Personne{
                 User.p = p;
     }
     }
+   
 }

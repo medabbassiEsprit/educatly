@@ -53,14 +53,14 @@ public class FXML_ResetController implements Initializable {
      ResultSet rs = null;
      PreparedStatement pst = null ;
      User.UserNetsed u = new User.UserNetsed();
-     Personne pr = u.getP();
-
+     String pr = u.getEmail();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println("pr===>"+pr);
     }    
 
     @FXML
@@ -73,9 +73,9 @@ public class FXML_ResetController implements Initializable {
        ServicePersonne sp = new ServicePersonne();
         Personne p = new Personne();
         
-        String userN= pr.getUsername();
+        String email= pr;
         String password=pass.getText();
-        
+        System.out.println("=====>"+email + password);
       
         
        if (event.getSource() == verifier) {
@@ -83,7 +83,7 @@ public class FXML_ResetController implements Initializable {
            if(pass.getText().equals(confirmpass.getText())){
                
                 try {
-                sp.updatePassword(password,userN);
+                sp.updatePassword(password,email);
                 Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     //stage.setMaximized(true);
