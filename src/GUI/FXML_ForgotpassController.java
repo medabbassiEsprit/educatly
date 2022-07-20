@@ -93,7 +93,7 @@ public class FXML_ForgotpassController implements Initializable {
         randomcode = rand.nextInt(999999);
         String host = "smtp.gmail.com";
         String user = "mayssa.khalifa@esprit.tn";
-        String pass = "211SFT2423";
+        String pass = "bhwztbgsbynvkjvb";
         String to = email.getText();
         String subject ="Reseting code ";
         String message ="your reset code is "+randomcode;
@@ -108,6 +108,7 @@ public class FXML_ForgotpassController implements Initializable {
         props.put("mail.smtp.user","user"); 
         props.put("mail.smtp.port", "25"); 
         props.put("mail.debug", "true"); 
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         props.put("mail.smtp.EnableSSL.enable","true");
          
 

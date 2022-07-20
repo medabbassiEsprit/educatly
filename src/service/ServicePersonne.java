@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import utils.MyDb;
 
 /**
@@ -109,13 +110,24 @@ public class ServicePersonne implements IService<Personne>{
                     
                   Statement stm =cnx.createStatement();
                   stm.executeUpdate(requet);
-                  
-                  
-                  
-                  
-       
+          
        } catch (SQLException ex) {
            ex.printStackTrace();
+      }
+       
+    }
+      public void updatePassword(String password,String username) {
+         Personne p = new Personne();
+       try{
+            String requet= "UPDATE `users` SET `password`='"+password+"' WHERE `email`='"+username+"'";
+                    
+                 Statement stm =cnx.createStatement();
+                 stm.executeUpdate(requet);
+                  JOptionPane.showMessageDialog(null, "Reset Successfully");
+          
+       } catch (SQLException ex) {
+           ex.printStackTrace();
+           JOptionPane.showMessageDialog(null, "password do not match ");
       }
        
     }

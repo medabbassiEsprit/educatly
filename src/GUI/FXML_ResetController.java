@@ -26,7 +26,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import service.ServicePersonne;
 import utils.MyDb;
+import utils.User;
 
 /**
  * FXML Controller class
@@ -50,7 +52,8 @@ public class FXML_ResetController implements Initializable {
      Connection con = null;
      ResultSet rs = null;
      PreparedStatement pst = null ;
-     Personne p = new Personne();
+     User.UserNetsed u = new User.UserNetsed();
+     Personne pr = u.getP();
 
     /**
      * Initializes the controller class.
@@ -67,11 +70,20 @@ public class FXML_ResetController implements Initializable {
 
     @FXML
     private void verif_btn(ActionEvent event)  {
-       
+       ServicePersonne sp = new ServicePersonne();
+        Personne p = new Personne();
+        
+        String userN= pr.getUsername();
+        String password=pass.getText();
+        
+      
+        
        if (event.getSource() == verifier) {
             //login here
-            if (Reset().equals("Success")) {
+           if(pass.getText().equals(confirmpass.getText())){
+               
                 try {
+                sp.updatePassword(password,userN);
                 Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     //stage.setMaximized(true);
@@ -89,25 +101,25 @@ public class FXML_ResetController implements Initializable {
     
     
     
-     private String Reset() {
-        String status = "Success";
-         if(pass.getText().equals(confirmpass.getText())){
-            try{
-                
-                String qry= "UPDATE users SET password=? WHERE username="+p.getUsername();
-                con = MyDb.getCnx();
-                pst=con.prepareStatement(qry);
-                pst.setString(1, p.getPassword());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Reset Successfully");
-             }
-           catch(Exception ex){
-               JOptionPane.showMessageDialog(null, ex);
-           }}
-            else {
-                    JOptionPane.showMessageDialog(null, "password do not match ");
-                 }
-        
-        return status;
-     }
+//     private Personne Reset(String password,String Username) {
+//        String status = "Success";
+//         if(pass.getText().equals(confirmpass.getText())){
+//            try{
+//                
+//                String qry= "UPDATE `users` SET `password`="+"'password' WHERE username="+Username;
+//                con = MyDb.getCnx();
+//                pst=con.prepareStatement(qry);
+//                pst.setString(1, p.getPassword());
+//                pst.executeUpdate();
+//                JOptionPane.showMessageDialog(null, "Reset Successfully");
+//             }
+//           catch(Exception ex){
+//               JOptionPane.showMessageDialog(null, ex);
+//           }}
+//            else {
+//                    JOptionPane.showMessageDialog(null, "password do not match ");
+//                 }
+//        
+//        return status;
+//     }
 }
